@@ -70,12 +70,14 @@ class Experience {
       0.1,
       1000
     )
-    this.camera.position.set(0, 20, -40)
+    // this.camera.position.set(0, 20, -40)
+    // this.camera.position.set(0, 5, -20)
+    this.camera.position.set(6, 8, 14)
     this.scene.add(this.camera)
 
     // Controls
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-    // this.controls.enableDamping = true
+    this.controls.enableDamping = true
     this.controls.update()
   }
 
@@ -84,6 +86,7 @@ class Experience {
       antialias: true,
       alpha: true,
     })
+    this.renderer.shadowMap.enabled = true
     this.renderer.setSize(this.sizes.width, this.sizes.height)
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     this.container.appendChild(this.renderer.domElement)
@@ -98,8 +101,15 @@ class Experience {
   }
 
   setLight() {
-    const ambientLight = new THREE.AmbientLight('white')
+    const ambientLight = new THREE.AmbientLight(0x333333)
     this.scene.add(ambientLight)
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
+    directionalLight.position.set(0, 50, 0)
+    directionalLight.castShadow = true
+    directionalLight.shadow.mapSize.width = 1024
+    directionalLight.shadow.mapSize.height = 1024
+    this.scene.add(directionalLight)
   }
 
   setCannon() {
