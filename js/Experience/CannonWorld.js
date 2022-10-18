@@ -1,6 +1,9 @@
 import * as CANNON from 'cannon-es'
 import * as THREE from 'three'
 
+/**
+ * Falling objects with gravity
+ */
 class CannonWorld {
   constructor(options) {
     this.scene = options.scene

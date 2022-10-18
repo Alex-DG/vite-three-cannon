@@ -1,6 +1,8 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+
 import CannonWorld from './CannonWorld'
+import CannonWorld2 from './CannonWorld2'
 
 class Experience {
   constructor(options) {
@@ -21,6 +23,7 @@ class Experience {
     this.setRenderer()
     this.setCamera()
 
+    this.setLight()
     this.setCannon()
 
     this.setResize()
@@ -67,7 +70,7 @@ class Experience {
       0.1,
       1000
     )
-    this.camera.position.set(0, 20, -50)
+    this.camera.position.set(0, 20, -40)
     this.scene.add(this.camera)
 
     // Controls
@@ -94,8 +97,13 @@ class Experience {
     this.scene.add(cube)
   }
 
+  setLight() {
+    const ambientLight = new THREE.AmbientLight('white')
+    this.scene.add(ambientLight)
+  }
+
   setCannon() {
-    this.cannon = new CannonWorld({ scene: this.scene })
+    this.cannon = new CannonWorld2({ scene: this.scene, camera: this.camera })
   }
 
   setResize() {
