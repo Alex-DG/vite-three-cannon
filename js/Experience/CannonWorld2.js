@@ -1,6 +1,9 @@
 import * as CANNON from 'cannon-es'
 import * as THREE from 'three'
 
+/**
+ * Falling bouncing ball on click
+ */
 class CannonWorld2 {
   constructor(options) {
     this.scene = options.scene
