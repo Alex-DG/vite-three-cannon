@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import CannonWorld from './CannonWorld'
 import CannonWorld2 from './CannonWorld2'
 import CannonWorld3 from './CannonWorld3'
+import CannonWorld4 from './CannonWorld4'
 
 class Experience {
   constructor(options) {
@@ -114,7 +115,7 @@ class Experience {
   }
 
   setCannon() {
-    this.cannon = new CannonWorld3({ scene: this.scene, camera: this.camera })
+    this.cannon = new CannonWorld4({ scene: this.scene, camera: this.camera })
   }
 
   setResize() {

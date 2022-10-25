@@ -4,7 +4,7 @@ import * as THREE from 'three'
 /**
  * Lock Constraint
  */
-class CannonWorld2 {
+class CannonWorld3 {
   constructor(options) {
     this.scene = options.scene
     this.camera = options.camera
@@ -151,4 +151,4 @@ class CannonWorld2 {
   }
 }
 
-export default CannonWorld2
+export default CannonWorld3
