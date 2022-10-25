@@ -12,7 +12,7 @@ class CannonWorld4 {
     this.timeStep = 1 / 60
 
     this.params = {
-      dist: 0.2,
+      dist: 0.25,
       mass: 0.5,
       cols: 15,
       rows: 15,
@@ -32,40 +32,17 @@ class CannonWorld4 {
   }
 
   setObjects() {
-    // const groundGeo = new THREE.PlaneGeometry(15, 15)
-    // const groundMat = new THREE.MeshStandardMaterial({
-    //   color: 0xffffff,
-    //   side: THREE.DoubleSide,
-    //   wireframe: false,
-    // })
-    // this.groundMesh = new THREE.Mesh(groundGeo, groundMat)
-    // this.groundMesh.receiveShadow = true
-    // this.scene.add(this.groundMesh)
-
     const particleGeo = new THREE.SphereBufferGeometry(0.1)
     const particleMat = new THREE.MeshPhongMaterial({ color: 0xffea00 })
     this.particleMesh = new THREE.Mesh(particleGeo, particleMat)
 
-    const sphereGeo = new THREE.SphereGeometry(1.5, 50, 50)
+    const sphereGeo = new THREE.SphereGeometry(2, 50, 50)
     const sphereMat = new THREE.MeshPhongMaterial({ color: 0xa3a3a3 })
     this.sphereMesh = new THREE.Mesh(sphereGeo, sphereMat)
     this.scene.add(this.sphereMesh)
   }
 
   setBody() {
-    // Ground body
-    // this.groundPhysMat = new CANNON.Material()
-    // this.groundBody = new CANNON.Body({
-    //   // new CANNON.Plane(), plane is infinite to make objects falling down you need a box shape
-    //   // mass: 0,
-    //   shape: new CANNON.Box(new CANNON.Vec3(7.5, 7.5, 0.001)),
-    //   type: CANNON.Body.STATIC,
-    //   material: this.groundPhysMat,
-    //   position: new CANNON.Vec3(0, -0.6, 0),
-    // })
-    // this.groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0)
-    // this.world.addBody(this.groundBody)
-
     // Particles
     const shape = new CANNON.Particle()
     let particles = {}
@@ -99,7 +76,7 @@ class CannonWorld4 {
     // Sphere
     const sphereBody = new CANNON.Body({
       mass: 0,
-      shape: new CANNON.Sphere(1.5),
+      shape: new CANNON.Sphere(2),
     })
     this.world.addBody(sphereBody)
     this.bodiesArray.push(sphereBody)
@@ -133,16 +110,9 @@ class CannonWorld4 {
   update() {
     this.world?.step(this.timeStep)
 
-    // this.groundMesh?.position.copy(this.groundBody.position)
-    // this.groundMesh?.quaternion.copy(this.groundBody.quaternion)
-
     for (let index = 0; index < this.meshesArray.length; index++) {
       this.meshesArray[index].position.copy(this.bodiesArray[index].position)
-      // this.meshesArray[index].quaternion.copy(this.bodiesArray[index].quaternion)
     }
-
-    // this.sphereMesh?.position.copy(this.sphereBody.position)
-    // this.sphereMesh?.quaternion.copy(this.sphereBody.quaternion)
   }
 }
 
